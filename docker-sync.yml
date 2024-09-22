@@ -1,0 +1,5 @@
+version: "2"
+syncs:
+  myapp-sync:
+    src: "./"
+    sync_strategy: "default"

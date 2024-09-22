@@ -1,0 +1,23 @@
+services:
+  server:
+    build:
+      context: .
+    container_name: express-ts-app
+    ports:
+      - "3001:3001"
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=100
+    volumes:
+      - .:/user/src/app
+      - /usr/src/app/node_modules
+    command: npm run dev:tsc-watch
+    networks:
+      - rajat_network
+networks:
+  rajat_network:
+    external: true
+volumes:
+  myapp-sync:
+    external: true
