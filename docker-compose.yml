@@ -1,0 +1,16 @@
+services:
+  server:
+    build:
+      context: .
+    user: root
+    volumes:
+      - .:/user/src/app
+    ports:
+      - "8080:8080"
+    networks:
+      - rajat_network
+    command: sh -c "npm install && npm run start:dev"
+
+networks:
+  rajat_network:
+    external: true
