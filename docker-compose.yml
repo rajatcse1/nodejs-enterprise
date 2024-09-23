@@ -12,7 +12,7 @@ services:
     volumes:
       - .:/user/src/app
       - /usr/src/app/node_modules
-    command: npm run dev:tsc-watch
+    command: npm run dev:nodemon
     networks:
       - rajat_network
 networks:
