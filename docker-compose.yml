@@ -9,12 +9,33 @@ services:
       - NODE_ENV=development
       - CHOKIDAR_USEPOLLING=true
       - CHOKIDAR_INTERVAL=100
+      - DATABASE_HOST=postgres
+      - DATABASE_POST=5432
+      - DATABASE_USERNAME=root
+      - DATABASE_PASSWORD=toor
+      - DATABASE_NAME=enterprise
+
     volumes:
       - .:/user/src/app
       - /usr/src/app/node_modules
     command: npm run dev:nodemon
     networks:
       - rajat_network
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: toor
+      POSTGRES_DB: enterprise
+    ports:
+      - "5432:5432"
+    networks:
+      - rajat_network
+
 networks:
   rajat_network:
     external: true
