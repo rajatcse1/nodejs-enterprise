@@ -3,12 +3,15 @@ import dotenv from "dotenv";
 import baseRoutes from "./modules/routes";
 import articleRoutes from "./modules/articles/routes";
 import morgan from "morgan";
+import helmet from "helmet";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
 app.use(morgan('combined'));
+app.use(helmet.crossOriginResourcePolicy({ policy: "same-origin" }));
+
 
 app.use("/", baseRoutes);
 app.use("/articles", articleRoutes);
